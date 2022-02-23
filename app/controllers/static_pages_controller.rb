@@ -4,4 +4,7 @@ class StaticPagesController < ApplicationController
 
   # GET /help
   def help; end
+
+  # GET /about
+  def about; end
 end
