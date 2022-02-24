@@ -1,0 +1,8 @@
+en:
+  static_pages:
+    about:
+      title: 'About'
+    contact:
+      title: 'Contact'
+    help:
+      title: 'Help'
