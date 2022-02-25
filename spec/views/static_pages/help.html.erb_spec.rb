@@ -5,7 +5,7 @@ RSpec.describe 'static_pages/help', type: :view do
     render template: 'static_pages/help', layout: 'layouts/application'
   end
 
-  it 'is about title' do
-    assert_select 'title', 'Help | Ruby on Rails Tutorial Sample App'
+  it 'is help title' do
+    expect(rendered).to have_title(full_title(t('static_pages.help.title')))
   end
 end
