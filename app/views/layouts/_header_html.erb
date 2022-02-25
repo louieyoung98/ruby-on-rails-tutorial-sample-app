@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <%= link_to t('project_name'), root_path, class: 'navbar-brand logo' %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#primary-navbar" aria-controls="primary-navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="primary-navbar">
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        <li class="nav-item">
+          <%= link_to 'Home', home_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Help', help_path, class: 'nav-link' %>
+        </li>
+        <%
+          # If signed out
+          if true
+        %>
+          <li class="nav-item">
+            <%= link_to 'Log in', '/', class: 'nav-link' %>
+          </li>
+        <% end %>
+        <%
+          # If signed in
+          if false
+        %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbar-settings" data-bs-toggle="dropdown" aria-expanded="false">Settings</a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbar-settings">
+              <li><%= link_to 'Account Information', '/', class: 'dropdown-item' %></li>
+              <li><%= link_to 'Logout', '/', class: 'dropdown-item' %></li>
+            </ul>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
