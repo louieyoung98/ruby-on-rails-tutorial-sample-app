@@ -6,6 +6,6 @@ RSpec.describe 'static_pages/about', type: :view do
   end
 
   it 'is about title' do
-    assert_select 'title', 'About | Ruby on Rails Tutorial Sample App'
+    expect(rendered).to have_title(full_title(t('static_pages.about.title')))
   end
 end

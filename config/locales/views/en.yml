@@ -6,3 +6,6 @@ en:
       title: 'Contact'
     help:
       title: 'Help'
+  users:
+    new:
+      title: 'Signup'

@@ -35,6 +35,12 @@ module SampleApp
     # Don't generate system test files.
     config.generators.system_tests = nil
 
+    # Don't generate controller assets.
+    config.generators.assets = false
+
+    # Don't generate controller helpers.
+    config.generators.helpers = false
+
     # Add custom locales
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
   end

@@ -6,6 +6,6 @@ RSpec.describe 'static_pages/home', type: :view do
   end
 
   it 'is home title' do
-    assert_select 'title', 'Ruby on Rails Tutorial Sample App'
+    expect(rendered).to have_title(full_title)
   end
 end
