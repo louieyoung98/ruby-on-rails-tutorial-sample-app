@@ -1,0 +1,33 @@
+<% provide(:title, "#{@user.first_name} #{@user.last_name} - #{@user.username}") %>
+<div class="container container-content">
+  <aside class="col-md-4">
+    <section class="user-info">
+      <h1>
+        <%= gravatar_for(@user) %>
+        <%= "#{@user.first_name} #{@user.last_name}" %>
+      </h1>
+    </section>
+  </aside>
+
+
+  <p>
+    <%= "#{@user.first_name} #{@user.last_name}" %>
+  </p>
+
+  <p>
+    <%= "#{@user.username} - #{@user.email}" %>
+  </p>
+
+  <p>
+    <%= Time.now %>
+  </p>
+
+  <p>
+    <%= @user.updated_at %>
+  </p>
+
+  <p>
+    <%= @user.created_at %>
+  </p>
+
+</div>
