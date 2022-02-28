@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  # Authentication plugin bcrypt
+  has_secure_password
+
   before_save { email.downcase! }
 
   validates :first_name,
@@ -27,4 +30,8 @@ class User < ApplicationRecord
 
   validates :phone_number,
             presence: true
+
+  validates :password,
+            presence: true,
+            length:   { minimum: 6 }
 end
