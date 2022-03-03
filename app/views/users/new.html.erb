@@ -1,6 +1,39 @@
 <%
   title = t('users.new.title')
   provide(:title, title)
+
+  default_input = 'text_field'
+  available_inputs = {
+    :first_name             => { size: 'col-6' },
+    :last_name              => { size: 'col-6' },
+    :email                  => { size: 'col-6' },
+    :phone_number           => { size: 'col-6' },
+    :username               => { size: 'col-12' },
+    :password               => { size: 'col-6', type: 'password' },
+    :password_confirmation  => { size: 'col-6', type: 'password', label: 'Confirmation' }
+  }
 %>
-<h1><%= title %></h1>
-<p>This will be a signup page for new users.</p>
+
+<div class="container container-content container-content-narrow">
+  <h1><%= title %></h1>
+  <%= form_with(model: @user, local: true) do |field| %>
+    <div class="form-group row">
+      <div class="col-12">
+        <%= render 'shared/error_messages' %>
+      </div>
+
+      <% available_inputs.each do |field_name, options| %>
+        <div class="<%= options[:size] %>">
+          <%= field.label field_name.to_sym, options[:label].nil? ? '' : options[:label], class: "form-label" %>
+          <%= field.send(options[:type].nil? ? default_input : options[:type] + '_field', field_name.to_sym, class: "form-control") %>
+        </div>
+      <% end %>
+
+      <div class="col-12">
+        <%= field.submit "Create my account", class: "btn btn-primary" %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+
