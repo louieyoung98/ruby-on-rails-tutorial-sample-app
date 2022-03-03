@@ -25,6 +25,10 @@ $gray-medium-light: #eaeaea;
   margin-top: 1.5%;
 }
 
+.container-content-narrow {
+  width: 50% !important;
+}
+
 section {
   overflow: auto;
 }
@@ -96,7 +100,7 @@ p {
 /* footer */
 
 .container-footer {
-  margin-top: 12.5%;
+  margin-top: 1.5%;
 }
 
 footer {
@@ -158,6 +162,36 @@ aside {
 
 .gravatar_edit {
   margin-top: 15px;
+}
+
+/* forms */
+
+.form-label {
+  font-weight: bold;
+}
+
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+input {
+  height: auto !important;
+}
+
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
+
+.field_with_errors {
+  .form-control {
+    color: red;
+  }
 }
 
 /* miscellaneous */
