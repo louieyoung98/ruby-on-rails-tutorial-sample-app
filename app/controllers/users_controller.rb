@@ -1,10 +1,15 @@
 class UsersController < ApplicationController
+  def index
+    @user = User.new
+    render "new"
+  end
 
   # POST /users
   def create
-    @user = User.new(user_params)  # Not the final implementation!
+    @user = User.new(user_params) # Not the final implementation!
     if @user.save
-      # Handle a successful save.
+      flash[:success] = t("users.flash.success")
+      redirect_to @user
     else
       render "new"
     end
