@@ -7,5 +7,7 @@ en:
     help:
       title: 'Help'
   users:
+    flash:
+      success: 'Welcome to the Sample App!'
     new:
-      title: 'Signup'
+      title: 'Sign up'
