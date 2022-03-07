@@ -11,3 +11,6 @@ en:
       success: 'Welcome to the Sample App!'
     new:
       title: 'Sign up'
+  session:
+    new:
+      title: 'Log in'
