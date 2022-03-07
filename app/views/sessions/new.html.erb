@@ -1,0 +1,31 @@
+<%
+  title = t('session.new.title')
+  provide(:title, title)
+
+  default_input = 'text_field'
+  available_inputs = {
+    :email      => { size: 'col-12' },
+    :password   => { size: 'col-12', type: 'password' },
+  }
+%>
+
+<div class="container container-content container-content-narrow">
+  <h1><%= title %></h1>
+  <%= form_with(scope: :session, url: login_path, local: true) do |field| %>
+    <div class="form-group row">
+      <% available_inputs.each do |field_name, options| %>
+        <div class="<%= options[:size] %>">
+          <%= field.label field_name.to_sym, options[:label].nil? ? '' : options[:label], class: "form-label" %>
+          <%= field.send(options[:type].nil? ? default_input : options[:type] + '_field', field_name.to_sym, class: "form-control") %>
+        </div>
+      <% end %>
+
+      <div class="col-12">
+        <%= field.submit "Login", class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+  <p>
+    New user? <%= link_to "Sign up now!", signup_path %>
+  </p>
+</div>
