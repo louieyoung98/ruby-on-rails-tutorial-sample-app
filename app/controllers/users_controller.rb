@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
   def index
     @user = User.new
@@ -8,7 +10,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params) # Not the final implementation!
     if @user.save
+      log_in @user
       flash[:success] = t("users.flash.success")
+
       redirect_to @user
     else
       render "new"
@@ -26,7 +30,6 @@ class UsersController < ApplicationController
   def new
     @user = User.new
   end
-
 
   # Start private functions
   private

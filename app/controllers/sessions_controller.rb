@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SessionsController < ApplicationController
   # GET /login
   def new; end
@@ -8,15 +10,22 @@ class SessionsController < ApplicationController
 
     user = User.find_by(email: strong_params[:email])
     if !!user&.authenticate(strong_params[:password])
-      # TODO: Implement session login functionality
+      log_in user
+
+      redirect_to user
     else
       flash.now[:danger] = "Invalid Email/Username or Password"
+
       render "new"
     end
   end
 
   # DELETE /login
-  def destroy; end
+  def destroy
+    log_out
+
+    redirect_to root_path
+  end
 
   private
 
