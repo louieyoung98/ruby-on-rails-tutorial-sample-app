@@ -20,6 +20,14 @@
         </div>
       <% end %>
 
+      <div class="form-check form-check-inline">
+        <%= field.label :remember_me, class: "form-check-label" do %>
+          <%= field.check_box :remember_me, class: "form-check-input form-check-remember-me" %>
+          <span> Remember me on this browser </span>
+        <% end %>
+      </div>
+
+
       <div class="col-12">
         <%= field.submit "Login", class: "btn btn-primary" %>
       </div>

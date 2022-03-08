@@ -198,6 +198,21 @@ input {
   height: auto !important;
 }
 
+.checkbox {
+  margin-top: -10px;
+  margin-bottom: 10px;
+  span {
+    margin-left: 20px !important;
+    font-weight: normal;
+  }
+}
+
+.form-check-remember-me {
+  height: 1em !important;
+  margin-left: -0.8em !important;
+  float: none !important;
+}
+
 #error_explanation {
   color: red;
   ul {

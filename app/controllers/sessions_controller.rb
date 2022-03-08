@@ -11,6 +11,9 @@ class SessionsController < ApplicationController
     user = User.find_by_email_or_username(strong_params[:login])
     if user&.authenticate(strong_params[:password])
       reset_session
+
+      # If user has selected remember me via checkbox on session login
+      strong_params[:remember_me] == "1" ? remember(user) : forget(user)
       log_in user
 
       redirect_to user
