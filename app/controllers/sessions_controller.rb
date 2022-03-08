@@ -8,8 +8,9 @@ class SessionsController < ApplicationController
   def create
     strong_params = session_params
 
-    user = User.find_by(email: strong_params[:email])
-    if !!user&.authenticate(strong_params[:password])
+    user = User.find_by_email_or_username(strong_params[:login])
+    if user&.authenticate(strong_params[:password])
+      reset_session
       log_in user
 
       redirect_to user
@@ -22,7 +23,7 @@ class SessionsController < ApplicationController
 
   # DELETE /login
   def destroy
-    log_out
+    log_out if logged_in?
 
     redirect_to root_path
   end
@@ -31,8 +32,9 @@ class SessionsController < ApplicationController
 
   def session_params
     params.require(:session).permit(
-      :email,
+      :login,
       :password,
+      :remember_me,
     )
   end
 end
