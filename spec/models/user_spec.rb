@@ -45,6 +45,43 @@ RSpec.describe User, type: :model do
   ## when email is too long
   it { is_expected.not_to validate_length_of(:last_name).is_at_most(256) }
 
+  describe ".for_email_or_username" do
+    subject { described_class.for_email_or_username(value) }
+
+    let!(:user) { create :user, email: "test@gmail.com", username: "test_user" }
+
+    before do
+      create :user, email: "test2@gmail.com"
+    end
+
+    context "when matches email" do
+      let(:value) { "test@gmail.com" }
+
+      it { is_expected.to contain_exactly user }
+    end
+
+    context "when matches username" do
+      let(:value) { "test_user" }
+
+      it { is_expected.to contain_exactly user}
+    end
+
+    context "when matches neither" do
+      let(:value) { "bad_data" }
+
+      # Due to not passing any values for contain_exactly, it is expecting an empty array, e.g. []
+      it { is_expected.to contain_exactly }
+    end
+
+    context "when matches for different records" do
+      let(:value) { "test@gmail.com" }
+
+      before { create :user, username: user.email }
+
+      it { is_expected.to contain_exactly user }
+    end
+  end
+
   # BCrypt Authentication
 
   ## password should have a minimum length
