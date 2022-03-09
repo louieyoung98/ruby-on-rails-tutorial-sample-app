@@ -5,8 +5,9 @@ class UsersController < ApplicationController
   before_action :correct_user, only: %i[edit update]
 
   def index
-    @user = User.new
-    render "new"
+    @users = User.all
+    @sort, @users = table_sort @users # Default sorting, e.g., order_by_#{field_name} (Default scopes)
+    @pagy, @users = pagy @users, page: params[:page], items: 10, link_extra: 'class="pagy-nav-active"' # then paginate
   end
 
   # POST /users

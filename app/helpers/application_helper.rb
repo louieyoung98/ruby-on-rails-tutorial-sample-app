@@ -1,5 +1,7 @@
+# frozen_string_literal: true
 module ApplicationHelper
   include Katalyst::Tables::Frontend
+  include Pagy::Frontend
 
   # Returns the value inserted into 'title' element upon render of the page
   #

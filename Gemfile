@@ -25,6 +25,8 @@ gem "jbuilder", "~> 2.7"
 gem "bcrypt", "~> 3.1.7"
 # Katalyst Tables plugin
 gem "katalyst-tables", git: "https://github.com/katalyst/katalyst-tables", branch: "main"
+# 'Pagy' pagination plugin
+gem "pagy", "~> 4.10.1"
 
 
 # Use Active Storage variant

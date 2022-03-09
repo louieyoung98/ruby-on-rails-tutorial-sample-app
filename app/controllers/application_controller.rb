@@ -2,6 +2,7 @@
 
 class ApplicationController < ActionController::Base
   include Katalyst::Tables::Backend
+  include Pagy::Backend
 
   helper_method :log_in, :log_out, :current_user, :logged_in?
 
