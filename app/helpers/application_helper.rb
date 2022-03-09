@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include Katalyst::Tables::Frontend
+
   # Returns the value inserted into 'title' element upon render of the page
   #
   # Utilising string concatenation over string interpolation to

@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/katalyst/katalyst-tables
+  revision: f47e54a81e58c5658bbed32ce33a697975f04dd9
+  branch: main
+  specs:
+    katalyst-tables (0.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -265,6 +272,7 @@ DEPENDENCIES
   factory_bot_rails (~> 6.2)
   faker (~> 2.19)
   jbuilder (~> 2.7)
+  katalyst-tables!
   listen (~> 3.3)
   pg (~> 1.1)
   puma (~> 5.0)
