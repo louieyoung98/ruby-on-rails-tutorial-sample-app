@@ -35,7 +35,8 @@ class User < ApplicationRecord
 
   validates :password,
             presence: true,
-            length:   { minimum: 6 }
+            length:   { minimum: 6 },
+            allow_nil: true
 
   scope :for_email_or_username, ->(value) do
     where(arel_table[:email].matches(value).or(arel_table[:username].matches(value))).limit(1)
