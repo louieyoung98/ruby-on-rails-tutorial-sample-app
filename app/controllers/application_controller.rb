@@ -36,6 +36,22 @@ class ApplicationController < ActionController::Base
     @current_user ||= (find_user_from_session || find_user_from_cookie)
   end
 
+  # Validates that the passed user object or user id is the current logged in user.
+  # Example
+  # `current_user?(user: User.new)`
+  # `current_user?(user_id: params[:id])`
+  def current_user?(**options)
+    user = nil
+
+    if options[:user_id]
+      user = User.find_by(id: options[:user_id])
+    elsif options[:user]
+      user = options[:user]
+    end
+
+    user == current_user
+  end
+
   def find_user_from_session
     return if (user_id = session[:user_id]).nil?
 
@@ -59,5 +75,13 @@ class ApplicationController < ActionController::Base
     user.remember
     cookies.permanent.encrypted[:user_id] = user.id
     cookies.encrypted[:remember_token] = user.remember_token
+  end
+
+  def redirect_back_or(forwarding_url, default)
+    redirect_to(forwarding_url || default)
+  end
+
+  def store_location
+    session[:forwarding_url] = request.original_url if request.get?
   end
 end

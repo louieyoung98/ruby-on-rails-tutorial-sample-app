@@ -10,13 +10,14 @@ class SessionsController < ApplicationController
 
     user = User.find_by_email_or_username(strong_params[:login])
     if user&.authenticate(strong_params[:password])
+      forwarding_url = session[:forwarding_url]
       reset_session
 
       # If user has selected remember me via checkbox on session login
       strong_params[:remember_me] == "1" ? remember(user) : forget(user)
       log_in user
 
-      redirect_to user
+      redirect_back_or forwarding_url, user
     else
       flash.now[:danger] = "Invalid Email/Username or Password"
 
