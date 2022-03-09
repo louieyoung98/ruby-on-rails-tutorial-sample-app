@@ -55,7 +55,7 @@ a {
 }
 
 h1 {
-  font-size: 5em;
+  font-size: 4em;
   letter-spacing: -2px;
   margin-bottom: 30px;
   text-align: center;
@@ -183,6 +183,11 @@ aside {
 }
 
 /* forms */
+
+.container-form-actions {
+  margin-top: 0.75%;
+  float: right;
+}
 
 .form-label {
   font-weight: bold;

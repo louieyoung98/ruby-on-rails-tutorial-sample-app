@@ -11,6 +11,10 @@ en:
       success: 'Welcome to the Sample App!'
     new:
       title: 'Sign up'
+    edit:
+      title: 'Edit User'
+      flash:
+        success: 'User Updated successfully'
   session:
     new:
       title: 'Log in'

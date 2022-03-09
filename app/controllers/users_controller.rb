@@ -19,7 +19,15 @@ class UsersController < ApplicationController
     end
   end
 
-  def update; end
+  def update
+    @user = User.find(params[:id])
+    if @user&.update(user_params)
+      flash[:success] = t("users.edit.flash.success")
+      redirect_to @user
+    else
+      render "edit"
+    end
+  end
 
   # GET /users/1
   def show
@@ -31,7 +39,11 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  # Start private functions
+  # GET /users/1/edit
+  def edit
+    @user = User.find(params[:id])
+  end
+
   private
 
   def user_params

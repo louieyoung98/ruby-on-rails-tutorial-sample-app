@@ -1,0 +1,23 @@
+<%
+  title = t('users.edit.title')
+  provide(:title, title)
+%>
+
+<div class="container container-content">
+  <h1><%= "#{title} - #{@user.first_name} #{@user.last_name}" %></h1>
+  <%= form_with(model: @user, local: true) do |field| %>
+    <div class="container container-content container-colour form-group row">
+      <%= render "form" %>
+
+      <!-- Form Actions -->
+      <div class="col-md-2 offset-md-10 container-form-actions">
+        <%= field.submit "Save Changes", class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="container container-content gravatar_edit">
+    <%= gravatar_for @user %>
+    <a href="https://gravatar.com/emails" target="_blank" rel="noopener">Click here to change Gravatar</a>
+  </div>
+</div>
