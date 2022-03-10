@@ -1,33 +1,54 @@
 <% provide(:title, "#{@user.first_name} #{@user.last_name} - #{@user.username}") %>
-<div class="container container-content">
-  <aside class="col-md-4">
-    <section class="user-info">
-      <h1>
-        <%= gravatar_for(@user) %>
-        <%= "#{@user.first_name} #{@user.last_name}" %>
-      </h1>
-    </section>
-  </aside>
+<div class="container container-content container-content-narrow">
+    <h1>
+      <%= gravatar_for(@user) %>
+      <%= "#{@user.first_name} #{@user.last_name}" %>
+    </h1>
+</div>
 
+<div class="container container-content-narrow container-colour">
+  <div class="row">
+    <div class="col-6">
+      <p> <span class="user-show-field-title"> Name: </span> <%= @user.full_name %> </p>
+    </div>
 
-  <p>
-    <%= "#{@user.first_name} #{@user.last_name}" %>
-  </p>
+    <div class="col-6">
+      <p> <span class="user-show-field-title"> Username: </span> <%= @user.username %> </p>
+    </div>
 
-  <p>
-    <%= "#{@user.username} - #{@user.email}" %>
-  </p>
+    <div class="col-6">
+      <p> <span class="user-show-field-title"> Email: </span> <%= @user.email %> </p>
+    </div>
 
-  <p>
-    <%= Time.now %>
-  </p>
+    <div class="col-6">
+      <p> <span class="user-show-field-title"> Phone Number: </span> <%= @user.phone_number %> </p>
+    </div>
 
-  <p>
-    <%= @user.updated_at %>
-  </p>
+    <div class="col-12"> &nbsp; </div>
 
-  <p>
-    <%= @user.created_at %>
-  </p>
+    <div class="col-6">
+      <p><span class="user-show-field-title"> Last Activity At: </span></p>
+      <p><%= @user.updated_at.strftime("%Y-%m-%d %I:%M:%S %P") %></p>
+    </div>
 
+    <div class="col-6">
+      <p><span class="user-show-field-title"> Account Created At: </span></p>
+      <p><%= @user.created_at.strftime("%Y-%m-%d %I:%M:%S %P") %></p>
+    </div>
+
+    <div class="col-12"> &nbsp; </div>
+
+    <!-- Show Actions -->
+    <% if current_user?(user: @user) || current_user.administrator %>
+      <div class="col-md-2 offset-md-10 btn-group">
+        <%= link_to "Edit", edit_user_path(@user), class: "btn btn-secondary" %>
+        <% if current_user.administrator %>
+          <a class="btn btn-secondary dropdown-toggle" type="button" id="dropdown-menu-button-show" data-bs-toggle="dropdown" aria-expanded="false"></a>
+          <ul class="dropdown-menu" aria-labelledby="dropdown-menu-button-show">
+              <li><%= link_to "Destroy", @user, method: :delete, class: "dropdown-item", data: { confirm: "Are you sure?" } %></li>
+          </ul>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>

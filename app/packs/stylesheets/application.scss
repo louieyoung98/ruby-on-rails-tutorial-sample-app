@@ -50,6 +50,7 @@ $gray-medium-light: #eaeaea;
 
 .container-content-narrow {
   width: 50% !important;
+  padding: 3.5%;
 }
 
 section {
@@ -244,6 +245,11 @@ aside {
       }
     }
   }
+}
+
+/* show */
+.user-show-field-title {
+  font-weight: bold;
 }
 
 /* forms */
