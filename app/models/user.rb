@@ -42,6 +42,12 @@ class User < ApplicationRecord
     where(arel_table[:email].matches(value).or(arel_table[:username].matches(value))).limit(1)
   end
 
+  scope :order_by_full_name, ->(direction = :asc) { order(first_name: direction) }
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
   def remember
     self.remember_token = User.new_token
 
