@@ -1,24 +1,21 @@
 <%
   title = t('session.new.title')
   provide(:title, title)
-
-  default_input = 'text_field'
-  available_inputs = {
-    :login      => { size: 'col-12', label: "Email or Username" },
-    :password   => { size: 'col-12', type: 'password' },
-  }
 %>
 
 <div class="container container-content container-content-narrow">
   <h1><%= title %></h1>
   <%= form_with(scope: :session, url: login_path, local: true) do |field| %>
     <div class="form-group row">
-      <% available_inputs.each do |field_name, options| %>
-        <div class="<%= options[:size] %>">
-          <%= field.label field_name.to_sym, options[:label].nil? ? '' : options[:label], class: "form-label" %>
-          <%= field.send(options[:type].nil? ? default_input : options[:type] + '_field', field_name.to_sym, class: "form-control") %>
-        </div>
-      <% end %>
+      <div class="col-12">
+        <%= field.label :login, label: "Email or Username", class: "form-label" %>
+        <%= field.text_field :login, class: "form-control" %>
+      </div>
+
+      <div class="col-12">
+        <%= field.label :password, class: "form-label" %>
+        <%= field.password_field :password, class: "form-control" %>
+      </div>
 
       <div class="form-check form-check-inline">
         <%= field.label :remember_me, class: "form-check-label" do %>
