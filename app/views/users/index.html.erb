@@ -1,0 +1,26 @@
+<div class="container container-content container-content-index">
+  <h1> List of Users </h1>
+  <%= table_with collection: @users, class: "table container-colour table-hover", sort: @sort do |row, user| %>
+    <%= row.cell :full_name, label: "Name" do |cell| %>
+      <%= gravatar_for user, size: 30 %>
+      <%= cell.value %>
+    <% end %>
+    <%= row.cell :username %>
+    <%= row.cell :email %>
+    <%= row.cell :phone_number %>
+
+    <%= row.cell :actions, label: "&nbsp;".html_safe, class: row.header? ? "" :  "btn-group" do %>
+      <%= link_to "Show", user, class: "btn btn-secondary" %>
+      <% if current_user?(user: user) || current_user.administrator %>
+        <a class="btn btn-secondary dropdown-toggle" type="button" id="dropdown-menu-button-index" data-bs-toggle="dropdown" aria-expanded="false"></a>
+        <ul class="dropdown-menu" aria-labelledby="dropdown-menu-button-index">
+          <li><%= link_to "Edit", edit_user_path(user), class: "dropdown-item" %></li>
+          <% if current_user.administrator %>
+            <li><%= link_to "Destroy", user, method: :delete, class: "dropdown-item", data: { confirm: "Are you sure?" } %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    <% end %>
+  <% end %>
+  <%== pagy_nav @pagy %>
+</div>

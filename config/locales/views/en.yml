@@ -15,6 +15,10 @@ en:
       title: 'Edit User'
       flash:
         success: 'User Updated successfully'
+    destroy:
+      flash:
+        success: 'User deleted successfully'
+        danger: 'Issue occurred when deleting user'
   session:
     new:
       title: 'Log in'

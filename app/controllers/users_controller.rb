@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: %i[edit update]
+  before_action :logged_in_user, only: %i[index edit update destroy]
   before_action :correct_user, only: %i[edit update]
+  before_action :administrator_user, only: :destroy
 
   def index
     @users = User.all
@@ -24,6 +25,18 @@ class UsersController < ApplicationController
     end
   end
 
+  # DELETE /users/1
+  def destroy
+    if User.find(params[:id]).destroy
+      flash[:success] = t("users.destroy.flash.success")
+    else
+      flash[:danger] = t("users.destroy.flash.danger")
+    end
+
+    redirect_to users_url
+  end
+
+  # PATCH /users/1
   def update
     @user = User.find(params[:id])
     if @user&.update(user_params)
@@ -72,6 +85,10 @@ class UsersController < ApplicationController
   end
 
   def correct_user
-    redirect_to(root_url) unless current_user?(user_id: params[:id])
+    redirect_to(root_url) unless current_user?(user_id: params[:id]) || current_user.administrator
+  end
+
+  def administrator_user
+    redirect_to root_url unless current_user.administrator?
   end
 end

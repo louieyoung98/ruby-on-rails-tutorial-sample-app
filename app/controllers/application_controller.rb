@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   include Katalyst::Tables::Backend
   include Pagy::Backend
 
-  helper_method :log_in, :log_out, :current_user, :logged_in?
+  helper_method :log_in, :log_out, :current_user, :current_user?, :logged_in?
 
   # POST /session (create new session)
   # Log in to the given user object

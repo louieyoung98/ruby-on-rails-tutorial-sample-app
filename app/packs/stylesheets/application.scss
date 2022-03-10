@@ -25,6 +25,29 @@ $gray-medium-light: #eaeaea;
   margin-top: 1.5%;
 }
 
+.container-content-index {
+  thead {
+    color: white;
+    background-color: #2E2F30;
+  }
+
+  h1 {
+    float: left !important;
+  }
+
+  th {
+    padding: 1.25%;
+    a {
+      color: white;
+      text-decoration: none;
+      &:hover {
+        color:#00A0C6;
+        cursor:pointer;
+      }
+    }
+  }
+}
+
 .container-content-narrow {
   width: 50% !important;
 }
@@ -182,6 +205,47 @@ aside {
   margin-top: 15px;
 }
 
+/* index */
+.btn-group-index {
+  float: right !important;
+  width: auto !important;
+  overflow: auto;
+  padding: 10px 0;
+}
+
+.pagy-nav-active {
+  color: white !important;
+}
+
+.pagy-nav {
+  display: inline-block !important;
+  .page {
+    color: lightgray;
+    background-color:#6c757d;
+    display:inline-block;
+    font-weight:400;
+    line-height:1.5;
+    text-align:center;
+    text-decoration:none;
+    vertical-align:middle;
+    cursor:pointer;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    user-select:none;
+    border: 1px solid #6c757d;
+    padding:.375rem .75rem;
+    font-size:1rem;
+    border-radius:.25rem;
+    transition:color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    &:hover {
+      background-color: whitesmoke;
+      a {
+        color: black !important;
+      }
+    }
+  }
+}
+
 /* forms */
 
 .container-form-actions {
@@ -240,4 +304,10 @@ input {
   width: 100%;
   margin-top: 45px;
   @include box_sizing;
+}
+
+/* Bootstrap overrides */
+
+.btn-group {
+  float: none !important;
 }
