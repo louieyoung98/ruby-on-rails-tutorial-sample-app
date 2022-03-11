@@ -8,22 +8,19 @@ class SessionsController < ApplicationController
 
   # POST /login
   def create
-    strong_params = session_params
-
-    user = User.find_by_email_or_username(strong_params[:login])
-    if user&.authenticate(strong_params[:password])
-      forwarding_url = session[:forwarding_url]
-      reset_session
-
-      # If user has selected remember me via checkbox on session login
-      strong_params[:remember_me] == "1" ? remember(user) : forget(user)
-      log_in user
-
-      redirect_back_or forwarding_url, user
+    @user = User.find_by_email_or_username(session_params[:login])
+    if valid_login?
+      log_in_and_redirect
     else
-      flash.now[:danger] = "Invalid Email/Username or Password"
+      if @user&.activated?
+        flash.now[:warning] = t("session.create.flash.warning")
+      elsif @user && !@user.activated?
+        flash.now[:info] = t("session.create.flash.info").gsub! "{user.email}", @user.email
+      else
+        flash.now[:danger] = t("session.create.flash.danger")
+      end
 
-      render "new"
+      render :new
     end
   end
 
@@ -46,5 +43,20 @@ class SessionsController < ApplicationController
 
   def logged_in_user
     redirect_to root_url if logged_in?
+  end
+
+  def valid_login?
+    @user&.authenticate(session_params[:password]) && @user&.activated?
+  end
+
+  def log_in_and_redirect
+    forwarding_url = session[:forwarding_url]
+    reset_session
+
+    # If user has selected remember me via checkbox on session login
+    session_params[:remember_me] == "1" ? remember(@user) : forget(@user)
+    log_in @user
+
+    redirect_back_or forwarding_url, @user
   end
 end

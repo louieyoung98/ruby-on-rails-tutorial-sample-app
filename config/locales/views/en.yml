@@ -6,6 +6,11 @@ en:
       title: 'Contact'
     help:
       title: 'Help'
+  account_activation:
+    edit:
+      flash:
+        success: 'Account successfully activated!'
+        danger: 'Invalid activation link'
   users:
     flash:
       success: 'Welcome to the Sample App!'

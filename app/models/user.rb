@@ -49,6 +49,14 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
+  def activate
+    update(activated_at: Time.zone.now)
+  end
+
+  def activated?
+    activated_at.present?
+  end
+
   def remember
     self.remember_token = User.new_token
 
@@ -62,10 +70,11 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, nil)
   end
 
-  def authenticated?(remember_token)
-    return false if remember_digest.nil?
+  def authenticated?(attribute, token)
+    digest = self.send("#{attribute}_digest")
+    return false if digest.nil?
 
-    BCrypt::Password.new(remember_digest).is_password?(remember_token)
+    BCrypt::Password.new(digest).is_password?(token)
   end
 
   def session_token

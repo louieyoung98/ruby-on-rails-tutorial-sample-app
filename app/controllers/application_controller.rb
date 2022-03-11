@@ -66,7 +66,7 @@ class ApplicationController < ActionController::Base
     return if (user_id = cookies.encrypted[:user_id]).nil? || (remember_token = cookies.encrypted[:remember_token]).nil?
 
     user = User.find_by(id: user_id)
-    @current_user = user&.authenticated?(remember_token) && (log_in user) ? user : nil
+    @current_user = user&.authenticated?(:remember, remember_token) && (log_in user) ? user : nil
   end
 
   def logged_in?
