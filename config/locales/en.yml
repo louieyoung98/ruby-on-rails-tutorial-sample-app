@@ -31,3 +31,5 @@
 
 en:
   project_name: 'Prototype X'
+  mailer:
+    default_from: 'noreply@example.com'

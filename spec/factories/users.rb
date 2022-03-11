@@ -8,5 +8,7 @@ FactoryBot.define do
     password { "test_password" }
     phone_number { Faker::PhoneNumber.phone_number_with_country_code }
     email { "#{first_name}.#{last_name}@example.com" }
+    activation_token { User.new_token }
+    activated_at { Time.zone.now }
   end
 end
