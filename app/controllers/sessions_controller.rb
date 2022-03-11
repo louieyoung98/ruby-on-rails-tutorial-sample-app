@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class SessionsController < ApplicationController
+  before_action :logged_in_user, only: :new
+
   # GET /login
   def new; end
 
@@ -40,5 +42,9 @@ class SessionsController < ApplicationController
       :password,
       :remember_me,
     )
+  end
+
+  def logged_in_user
+    redirect_to root_url if logged_in?
   end
 end
