@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   attr_accessor :remember_token
 
-  before_save { email.downcase! }
+  before_save :downcase_email
 
   validates :first_name,
             presence: true,
@@ -87,5 +87,11 @@ class User < ApplicationRecord
     def new_token
       SecureRandom.urlsafe_base64
     end
+  end
+
+  private
+
+  def downcase_email
+    email.downcase!
   end
 end
