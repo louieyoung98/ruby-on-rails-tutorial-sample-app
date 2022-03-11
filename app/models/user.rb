@@ -45,6 +45,8 @@ class User < ApplicationRecord
 
   scope :order_by_full_name, ->(direction = :asc) { order(first_name: direction) }
 
+  scope :activated, -> { where.not(activated_at: nil) }
+
   def full_name
     "#{first_name} #{last_name}"
   end

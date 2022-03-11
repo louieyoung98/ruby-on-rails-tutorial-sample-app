@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   before_action :administrator_user, only: :destroy
 
   def index
-    @users = User.all
+    @users = User.activated
     @sort, @users = table_sort @users # Default sorting, e.g., order_by_#{field_name} (Default scopes)
     @pagy, @users = pagy @users, page: params[:page], items: 10, link_extra: 'class="pagy-nav-active"' # then paginate
   end
@@ -51,6 +51,7 @@ class UsersController < ApplicationController
   # GET /users/1
   def show
     @user = User.find(params[:id])
+    redirect_to users_path and nil unless @user.activated?
   end
 
   # GET /new
@@ -61,6 +62,7 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
+    redirect_to users_path and nil unless @user.activated?
   end
 
   private
