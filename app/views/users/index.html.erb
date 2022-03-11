@@ -8,6 +8,9 @@
     <%= row.cell :username %>
     <%= row.cell :email %>
     <%= row.cell :phone_number %>
+    <%= row.cell :updated_at, label: "Last Activity At" do |cell| %>
+      <%= cell.value.strftime("%Y-%m-%d %I:%M:%S %P") %>
+    <% end %>
 
     <%= row.cell :actions, label: "&nbsp;".html_safe, class: row.header? ? "" :  "btn-group" do %>
       <%= link_to "Show", user, class: "btn btn-secondary" %>
