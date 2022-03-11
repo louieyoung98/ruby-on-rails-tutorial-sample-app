@@ -49,6 +49,10 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
+  def send_account_activation_email
+    UserMailer.account_activation(self).deliver_now
+  end
+
   def activate
     update(activated_at: Time.zone.now)
   end

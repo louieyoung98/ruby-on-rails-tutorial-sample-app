@@ -15,11 +15,12 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params) # Not the final implementation!
     if @user.save
+      @user.send_account_activation_email
       reset_session
-      log_in @user
-      flash[:success] = t("users.flash.success")
 
-      redirect_to @user
+      flash[:info] = t("users.create.flash.info").gsub! "{user.email}", @user.email
+
+      redirect_to login_url
     else
       render "new"
     end

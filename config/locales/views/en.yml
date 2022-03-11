@@ -12,8 +12,10 @@ en:
         success: 'Account successfully activated!'
         danger: 'Invalid activation link'
   users:
-    flash:
-      success: 'Welcome to the Sample App!'
+    create:
+      flash:
+        success: 'Welcome to the Sample App!'
+        info: 'Please check your email at {user.email} to activate your account'
     new:
       title: 'Sign up'
     edit:
@@ -25,5 +27,10 @@ en:
         success: 'User deleted successfully'
         danger: 'Issue occurred when deleting user'
   session:
+    create:
+      flash:
+        info: 'Account requires activation, check your email at {user.email}'
+        warning: 'Invalid Email/Username or Password'
+        danger: 'Account does not exist'
     new:
       title: 'Log in'
